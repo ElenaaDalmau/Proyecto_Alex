@@ -1,0 +1,60 @@
+version: '3.8'
+services:
+  nginx:
+#    image: nginx:latest
+    build: .
+#    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./entrega:/usr/share/nginx/html
+#      - ./nginx.conf:/etc/nginx/nginx.conf  # Configuración de Nginx
+    depends_on:
+      - php
+
+  php:
+    image: php:8.1-fpm
+    container_name: php
+    volumes:
+     - ./app:/usr/share/nginx/html
+#      - ./entrega:/usr/share/nginx/html
+
+    expose:
+      - "9000"
+#    ports:
+#      - "9000:9000"  # Abre el puerto para acceso externo
+    networks:
+      - app_network
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "Pr0j3cts3@"
+      MYSQL_DATABASE: "coaching"
+      MYSQL_USER: "sea"
+      MYSQL_PASSWORD: "Pr0j3cts3@"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  web:
+     #Imagen que acabamos de subir
+    image: .
+    restart: always
+    #Redireccion de puertos
+    ports:
+    - "8080:8080"
+    volumes:
+      - ./entrega:/usr/share/nginx/html
+
+
+#Volumenes
+volumes:
+    db_data: {}
+    mysql_data: {}
+
+networks:
+  app_network:
+    driver: bridge
