@@ -1,10 +1,9 @@
-<!-- CONEXION -->
 <?php
     session_start();
 
-    $servername = "localhost";
+    $servername = "mysql";
     $username = "sea";
-    $database = "coaching";
+    $database = "COACHING";
     $password = "Pr0j3cts3@";
     
     // Creamos la conexion y seleccionamos la base de datos
