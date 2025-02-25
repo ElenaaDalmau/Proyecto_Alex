@@ -1,4 +1,3 @@
-<!-- CONEXION -->
 <?php
     session_start();
 
