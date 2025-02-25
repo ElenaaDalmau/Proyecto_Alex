@@ -3,7 +3,7 @@
 
     $servername = "mysql";
     $username = "sea";
-    $database = "COACHING";
+    $database = "coaching";
     $password = "Pr0j3cts3@";
     
     // Creamos la conexion y seleccionamos la base de datos
